@@ -1,0 +1,20 @@
+/*
+ * Filename: f:\work\git\canvas\shyjs\.babelrc
+ * Path: f:\work\git\canvas\shyjs
+ * Created Date: Sunday, March 3rd 2019, 2:15:35 am
+ * Author: zhenliang.sun
+ * 
+ * Copyright (c) 2019 vhall
+ */
+{
+  "presets": [
+    ["env", {
+      "targets": {
+        "browsers": ["> 5%", "last 5 versions", "not ie <= 8", "safari >= 7"]
+      },
+      "modules": false
+    }],
+    "stage-2"
+  ],
+  "plugins": ["transform-runtime", "syntax-dynamic-import", "transform-es2015-typeof-symbol"]
+}
