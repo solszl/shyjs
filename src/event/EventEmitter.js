@@ -1,13 +1,12 @@
 /**
  * 
  * Created Date: 2019-03-03, 1:26:38 (zhenliang.sun)
- * Last Modified: 2019-03-03, 2:48:55 (zhenliang.sun)
+ * Last Modified: 2019-03-03, 16:57:50 (zhenliang.sun)
  * Email: zhenliang.sun@gmail.com
  * 
  * Distributed under the MIT license. See LICENSE file for details.
  * Copyright (c) 2019 vhall
  */
-
 
 /**
  * 时间派发器, 全局事件派发接收器
@@ -16,13 +15,21 @@
  * @class EE
  * @author zhenliang.sun
  */
-export default class EE {
-  static CORE = new Core();
-  constructor(action, fn, replies, delay) {
+class EE {
+  /**
+   * Creates an instance of EE. 
+   * @param {*} action
+   * @param {*} fn
+   * @param {*} repeats
+   * @param {*} delay
+   * @memberof EE
+   */
+  constructor(action, fn, repeats, delay) {
     this.action = action;
     this.fn = fn;
-    this.replies = replies;
+    this.repeats = repeats;
     this.delay = delay;
+
     CORE.register(this);
   }
 
@@ -32,13 +39,13 @@ export default class EE {
    * @static
    * @param {*} action 事件名字
    * @param {*} listener 函数
-   * @param {number} [replies=0] 重复次数，执行次数过后，移除事件以及监听函数
+   * @param {number} [repeats=-1] 重复次数，执行次数过后，移除事件以及监听函数
    * @param {number} [delay=0] 每次调用延迟毫秒数
    * @returns
    * @memberof EE
    */
-  static on(action, listener, replies = 0, delay = 0) {
-    return new EE(action, listener, replies, delay);
+  static on(action, listener, repeats = -1, delay = 0) {
+    return new EE(action, listener, repeats, delay);
   }
   /**
    * 派发事件
@@ -87,14 +94,13 @@ export default class EE {
 
 class Core {
   constructor() {
-    let events = new Map();
-    this.events = events;
+    this.evts = new Map();;
   }
 
   register(ee) {
-    let ees = this.events.has(ee.action) ? this.events.get(ee.action) : [];
+    let ees = this.evts.has(ee.action) ? this.evts.get(ee.action) : [];
     ees.push(ee);
-    this.events.set(ee.action, ees);
+    this.evts.set(ee.action, ees);
   }
 
   emit(action, ...args) {
@@ -102,8 +108,19 @@ class Core {
       return;
     }
 
-    let ees = this.events.get(action);
-    // TODO: 派发事件！
+    let ees = this.evts.get(action);
+
+    ees.forEach((ee, i, a) => {
+      if (ee.repeats > 0) {
+        DelayCall.executeRepeat(ee, ...args);
+      } else if (ee.repeats === 0) {
+        // once
+        DelayCall.execute(ee, ee.delay, ...args);
+        a.splice(i, 1);
+      } else {
+        DelayCall.execute(ee, ee.delay, ...args);
+      }
+    });
   }
 
   off(action, listener) {
@@ -111,21 +128,67 @@ class Core {
       return;
     }
 
-    let ees = this.events.has(action) ? this.events.get(action) : [];
+    let ees = this.evts.has(action) ? this.evts.get(action) : [];
     if (ees.length === 0) {
-      this.events.delete(action);
+      this.evts.delete(action);
       return;
     }
 
+    DelayCall.clear(action, listener);
     ees = ees.filter(ee => ee.listener !== listener);
-    this.events.set(action, ees);
+    this.evts.set(action, ees);
   }
 
   has(action) {
-    return this.events.has(action);
+    return this.evts.has(action);
   }
 
   offAll() {
-    this.events.clear();
+    DelayCall.clear();
+    this.evts.clear();
   }
 }
+var delayCallIds = [];
+class DelayCall {
+  static executeRepeat(ee, ...args) {
+    let count = 0;
+    while (count < ee.repeats) {
+      const delay = count * ee.delay;
+      DelayCall.execute(ee, delay, ...args)
+      count += 1;
+    }
+  }
+
+  static execute(ee, delay, ...args) {
+    let timeoutId = setTimeout(() => {
+      ee.fn.call(null, ...args);
+    }, delay);
+
+    let action = ee.action;
+    let fn = ee.fn;
+    delayCallIds.push({
+      timeoutId,
+      action,
+      fn
+    });
+  }
+
+  static clear(action, fn) {
+    delayCallIds.forEach(item => {
+      if (action && fn) {
+        if (item.action === action && item.fn === fn) {
+          clearTimeout(item.timeoutId);
+        }
+      } else if (action && !fn) {
+        if (item.action === action) {
+          clearTimeout(item.timeoutId);
+        }
+      } else {
+        clearTimeout(item.timeoutId);
+      }
+    });
+  }
+}
+
+var CORE = new Core();
+module.exports = EE;
