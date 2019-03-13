@@ -43,7 +43,7 @@ export default class DisplayObjectContainer extends DisplayObject {
    */
   getChildAt(index) {
     let list = this.children
-    if (list.length < index) {
+    if(list.length < index) {
       return null
     }
     return list[index]
@@ -90,7 +90,7 @@ export default class DisplayObjectContainer extends DisplayObject {
    */
   removeChild(child) {
     let idx = this.children.indexOf(child)
-    if (idx === -1) {
+    if(idx === -1) {
       return child
     }
     return this.children.splice(idx, 1)
@@ -104,7 +104,7 @@ export default class DisplayObjectContainer extends DisplayObject {
    */
   removeChildAt(index) {
     let list = this.children
-    if (index > list.length) {
+    if(index > list.length) {
       return null
     }
     return this.children.splice(index, 1)
@@ -118,7 +118,7 @@ export default class DisplayObjectContainer extends DisplayObject {
    * @memberof DisplayObjectContainer
    */
   removeChildren(beginIndex, endIndex) {
-    if (endIndex > beginIndex) {
+    if(endIndex > beginIndex) {
       return []
     }
     return this.children.splice(beginIndex, endIndex - beginIndex + 1)
@@ -133,14 +133,14 @@ export default class DisplayObjectContainer extends DisplayObject {
    */
   setChildIndex(child, index) {
     let list = this.children
-    if (index > list.length) {
+    if(index > list.length) {
       index = list.length
     }
-    if (index < 0) {
+    if(index < 0) {
       index = 0
     }
 
-    if (!list.includes(child)) {
+    if(!list.includes(child)) {
       return list.splice(index, 0, child)
     }
 
@@ -159,7 +159,7 @@ export default class DisplayObjectContainer extends DisplayObject {
    */
   swapChildren(child1, child2) {
     let list = this.children
-    if (!list.includes(child1) || !list.includes(child2)) {
+    if(!list.includes(child1) || !list.includes(child2)) {
       return false
     }
 
@@ -180,11 +180,11 @@ export default class DisplayObjectContainer extends DisplayObject {
    */
   swapChildrenAt(index1, index2) {
     let list = this.children
-    if (index1 < 0 || index1 > list.length) {
+    if(index1 < 0 || index1 > list.length) {
       return false
     }
 
-    if (index2 < 0 || index2 > list.length) {
+    if(index2 < 0 || index2 > list.length) {
       return false
     }
 

@@ -1,4 +1,5 @@
 import DisplayObject from './DisplayObject'
+import Graphics from './Graphics'
 
 /**
  * 仅仅能够进行图形展示，无法当作容器

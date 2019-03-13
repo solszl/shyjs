@@ -5,12 +5,13 @@ module.exports = {
     "es6": true,
     "node": true
   },
-  "extends": "standard",
+  "extends": ["standard", "plugin:jest/recommended"],
   "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 2015,
     "sourceType": "module"
   },
+  "plugins": ["jest"],
   "rules": {
     "indent": [
       "error",

@@ -1,5 +1,5 @@
 import DisplayObjectContainer from './DisplayObjectContainer'
-import Graphics from './Graphics';
+import Graphics from './Graphics'
 export default class Sprite extends DisplayObjectContainer {
   constructor() {
     super()

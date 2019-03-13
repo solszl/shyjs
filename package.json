@@ -8,7 +8,8 @@
     "build-prod": "cross-env NODE_ENV=production LOG_LEVEL=warn node config/build.js",
     "build-dev": "cross-env NODE_ENV=development LOG_LEVEL=all node config/build.js",
     "build-local": "cross-env NODE_ENV=development LOG_LEVEL=all webpack-dev-server --config config/webpack.local.config.js",
-    "lint-fix": "eslint --fix --ext .js src/"
+    "lint-fix": "eslint --fix --ext .js src/",
+    "test": "jest --coverage --no-cache"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
     "@babel/runtime": "^7.3.4",
     "babel-cli": "^6.26.0",
     "babel-eslint": "^10.0.1",
+    "babel-jest": "^24.5.0",
     "babel-loader": "^8.0.5",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-plugin-transform-es2015-typeof-symbol": "^6.23.0",
@@ -34,9 +36,12 @@
     "eslint": "5.15.1",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jest": "^22.3.2",
     "eslint-plugin-node": "^8.0.1",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
+    "jest": "^24.5.0",
+    "jest-cli": "^24.5.0",
     "ora": "^3.2.0",
     "progress-bar-webpack-plugin": "^1.12.1",
     "uglifyjs-webpack-plugin": "^2.1.2",
@@ -44,5 +49,16 @@
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.2.1",
     "webpack-merge": "^4.2.1"
+  },
+  "jest": {
+    "rootDir": "./__test__",
+    "transform": {
+      ".js": "babel-jest"
+    },
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": [
+      "/__tests__/[^/]*/.+"
+    ],
+    "verbose": true
   }
 }
