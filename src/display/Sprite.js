@@ -1,5 +1,4 @@
 import DisplayObjectContainer from './DisplayObjectContainer'
-// const DisplayObjectContainer = require('./DisplayObjectContainer')
 export default class Sprite extends DisplayObjectContainer {
   constructor() {
     super()
@@ -63,5 +62,3 @@ export default class Sprite extends DisplayObjectContainer {
     return this._stage
   }
 }
-
-// module.exports = Sprite

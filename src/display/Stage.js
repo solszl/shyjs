@@ -1,5 +1,4 @@
 import DisplayObjectContainer from './DisplayObjectContainer'
-// const DisplayObjectContainer = require('./DisplayObjectContainer')
 
 /**
  * Stage 类代表主绘图区
@@ -91,8 +90,3 @@ export const StageEvent = {
   Resize: 'Shy.Resize',
   MouseLeave: 'Shy.MouseLeave'
 }
-
-// module.exports = {
-//   Stage,
-//   StageEvent
-// }

@@ -1,5 +1,4 @@
 import DisplayObject from './DisplayObject'
-// const DisplayObject = require('./DisplayObject')
 
 /**
  * 仅仅能够进行图形展示，无法当作容器
@@ -14,5 +13,3 @@ export default class Shape extends DisplayObject {
     super()
   }
 }
-
-// module.exports = Shape
