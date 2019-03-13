@@ -21,7 +21,7 @@ class DisplayObjectContainer extends DisplayObject {
    * @returns child
    */
   addChild(child) {
-    return child
+    return this.children.push(child)
   }
 
   /**
@@ -32,6 +32,7 @@ class DisplayObjectContainer extends DisplayObject {
    * @memberof DisplayObjectContainer
    */
   addChildAt(child, index) {
+    this.children.splice(index, 0, child)
     return child
   }
 
@@ -41,7 +42,13 @@ class DisplayObjectContainer extends DisplayObject {
    * @param {*} index
    * @memberof DisplayObjectContainer
    */
-  getChildAt(index) {}
+  getChildAt(index) {
+    let list = this.children
+    if(list.length < index) {
+      return null
+    }
+    return list[index]
+  }
 
   /**
    * 返回具有指定名称的子显示对象
@@ -50,17 +57,19 @@ class DisplayObjectContainer extends DisplayObject {
    * @memberof DisplayObjectContainer
    */
   getChildByName(name) {
-
+    let list = this.children
+    let result = list.filter(item => item.name === name)
+    return result.length ? result[0] : null
   }
 
   /**
    * 返回 DisplayObject 的 child 实例的索引位置
    *
-   * @param {*} index
+   * @param {*} child
    * @memberof DisplayObjectContainer
    */
-  getChildIndex(index) {
-
+  getChildIndex(child) {
+    return this.children.indexOf(child)
   }
 
   /**
@@ -81,7 +90,11 @@ class DisplayObjectContainer extends DisplayObject {
    * @memberof DisplayObjectContainer
    */
   removeChild(child) {
-
+    let idx = this.children.indexOf(child)
+    if(idx === -1) {
+      return child
+    }
+    return this.children.splice(idx, 1)
   }
 
   /**
@@ -90,7 +103,13 @@ class DisplayObjectContainer extends DisplayObject {
    * @param {*} index
    * @memberof DisplayObjectContainer
    */
-  removeChildAt(index) {}
+  removeChildAt(index) {
+    let list = this.children
+    if(index > list.length) {
+      return null
+    }
+    return this.children.splice(index, 1)
+  }
 
   /**
    * 从 DisplayObjectContainer 实例的子级列表中删除所有子 DisplayObject 实例
@@ -99,7 +118,12 @@ class DisplayObjectContainer extends DisplayObject {
    * @param {*} endIndex
    * @memberof DisplayObjectContainer
    */
-  removeChildren(beginIndex, endIndex) {}
+  removeChildren(beginIndex, endIndex) {
+    if(endIndex > beginIndex) {
+      return []
+    }
+    return this.children.splice(beginIndex, endIndex - beginIndex + 1)
+  }
 
   /**
    * 更改现有子项在显示对象容器中的位置
@@ -109,7 +133,22 @@ class DisplayObjectContainer extends DisplayObject {
    * @memberof DisplayObjectContainer
    */
   setChildIndex(child, index) {
+    let list = this.children
+    if(index > list.length) {
+      index = list.length
+    }
+    if(index < 0) {
+      index = 0
+    }
 
+    if(!list.includes(child)) {
+      return list.splice(index, 0, child)
+    }
+
+    let idx = list.indexOf(child)
+    list.splice(idx, 1)
+    list.splice(index, 0, child)
+    return child
   }
 
   /**
@@ -120,7 +159,17 @@ class DisplayObjectContainer extends DisplayObject {
    * @memberof DisplayObjectContainer
    */
   swapChildren(child1, child2) {
+    let list = this.children
+    if(!list.includes(child1) || !list.includes(child2)) {
+      return false
+    }
 
+    let tempChild = child1
+    let child1Index = list.indexOf(child1)
+    let child2Index = list.indexOf(child2)
+    list[child1Index] = child2
+    list[child2Index] = tempChild
+    return true
   }
 
   /**
@@ -131,7 +180,29 @@ class DisplayObjectContainer extends DisplayObject {
    * @memberof DisplayObjectContainer
    */
   swapChildrenAt(index1, index2) {
+    let list = this.children
+    if(index1 < 0 || index1 > list.length) {
+      return false
+    }
 
+    if(index2 < 0 || index2 > list.length) {
+      return false
+    }
+
+    let tempChild1 = list[index1]
+    let tempChild2 = list[index2]
+    list[index1] = tempChild2
+    list[index2] = tempChild1
+    return true
+  }
+
+  destroy() {
+    let list = this.children
+    list.forEach(child => {
+      child.destroy()
+    })
+
+    list = []
   }
 }
 

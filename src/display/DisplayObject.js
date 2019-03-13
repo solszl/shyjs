@@ -45,6 +45,8 @@ class DisplayObject {
 
   hitTest(x, y) {}
   hitTestObject(obj) {}
+
+  destroy() {}
 }
 
 module.exports = DisplayObject

@@ -46,6 +46,15 @@ import Point from "./geom/Point";
 // console.log(Event.AddedToStage)
 // console.log(Event.EnterFrame)
 
-const DisplayObjectContainer = require('./display/DiaplayObjectContainer')
-var con = new DisplayObjectContainer()
-console.log(con)
+// const DisplayObjectContainer = require('./display/DiaplayObjectContainer')
+// var con = new DisplayObjectContainer()
+// console.log(con)
+
+const Stage = require('./display/Stage').Stage
+const Sprite = require('./display/Sprite')
+var stage = new Stage()
+var sp = new Sprite()
+
+console.log(sp.stage)
+stage.addChild(sp)
+console.log(sp.stage)

@@ -14,6 +14,28 @@ class Stage extends DisplayObjectContainer {
     this._frameRate = 30
   }
 
+  addChild(child) {
+    child._stage = this
+    return super.addChild(child)
+  }
+
+  addChildAt(child, index) {
+    child._stage = this
+    return super.addChildAt(child, index)
+  }
+
+  removeChild(child) {
+    let c = super.removeChild(child)
+    c._stage = null
+    return c
+  }
+
+  removeChildAt(index) {
+    let child = super.removeChildAt(index)
+    child._stage = null
+    return child
+  }
+
   /**
    * 调用 invalidate() 方法，以便在出现下一个运行时必须呈现显示列表的时机（例如，当播放头前进到一个新帧）时，向其发送提醒显示对象的信号
    *
