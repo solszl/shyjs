@@ -104,7 +104,7 @@ export default class DisplayObjectContainer extends DisplayObject {
    */
   removeChildAt(index) {
     let list = this.children
-    if(index > list.length) {
+    if(index > list.length || index < 0) {
       return null
     }
     return this.children.splice(index, 1)
@@ -118,7 +118,7 @@ export default class DisplayObjectContainer extends DisplayObject {
    * @memberof DisplayObjectContainer
    */
   removeChildren(beginIndex, endIndex) {
-    if(endIndex > beginIndex) {
+    if(beginIndex > endIndex) {
       return []
     }
     return this.children.splice(beginIndex, endIndex - beginIndex + 1)
