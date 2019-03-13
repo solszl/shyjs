@@ -4,7 +4,7 @@
  * @class Event
  * @author zhenliang.sun
  */
-class Event {
+export class Event {
   constructor(type, data = null) {
     this.type = type
     this.data = data

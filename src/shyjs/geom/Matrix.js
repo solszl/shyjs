@@ -240,4 +240,6 @@ class Matrix {
   }
 }
 
-module.exports = Matrix
+module.exports = {
+  Matrix
+}

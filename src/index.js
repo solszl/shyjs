@@ -2,7 +2,7 @@
 import Point from "./geom/Point";
  *
  * Created Date: 2019-03-03, 2:56:22 (zhenliang.sun)
- * Last Modified: 2019-03-13, 23:30:54 (zhenliang.sun)
+ * Last Modified: 2019-03-14, 00:12:19 (zhenliang.sun)
  * Email: zhenliang.sun@gmail.com
  *
  * Distributed under the MIT license. See LICENSE file for details.
@@ -23,40 +23,51 @@ import Point from "./geom/Point";
 //   EE.emit('abcd', 'aa', 'b', 'c', 'd', 'e')
 // }, 3000)
 
-import DisplayObject from './shyjs/display/DisplayObject';
-import DisplayObjectContainer from './shyjs/display/DisplayObjectContainer';
-import Sprite from './shyjs/display/Sprite';
-import Stage from './shyjs/display/Stage';
-import Event from './shyjs/event/Event';
-import Point from './shyjs/geom/Point';
-import UUID from './shyjs/utils/UUID';
+import DisplayObject from './shyjs/display/DisplayObject'
+import DisplayObjectContainer from './shyjs/display/DisplayObjectContainer'
+import Sprite from './shyjs/display/Sprite'
+import Stage from './shyjs/display/Stage'
+import {
+  Event
+} from './shyjs/event/Event'
+import {
+  Point
+} from './shyjs/geom/Point'
+import {
+  UUID
+} from './shyjs/utils/UUID'
 
+class Main {
+  constructor() {
+    var p = new Point()
+    var p2 = p.add(new Point(10, 10))
+    console.log(p.x, p.y)
+    console.log(p2, p2.x)
+    console.log(p.toString())
 
-var p = new Point()
-var p2 = p.add(new Point(10, 10))
-console.log(p.x, p.y)
-console.log(p2, p2.x)
-console.log(p.toString())
+    let i = 0
+    while(i < 10) {
+      console.log(UUID.create())
+      i += 1
+    }
 
-let i = 0
-while (i < 10) {
-  console.log(UUID.create())
-  i += 1
+    var d = new DisplayObject()
+    console.log(d)
+
+    console.log(Event.Added)
+    console.log(Event.AddedToStage)
+    console.log(Event.EnterFrame)
+
+    var con = new DisplayObjectContainer()
+    console.log(con)
+
+    var stage = new Stage()
+    var sp = new Sprite()
+
+    console.log(sp.stage)
+    stage.addChild(sp)
+    console.log(sp.stage)
+  }
 }
 
-var d = new DisplayObject()
-console.log(d)
-
-console.log(Event.Added)
-console.log(Event.AddedToStage)
-console.log(Event.EnterFrame)
-
-var con = new DisplayObjectContainer()
-console.log(con)
-
-var stage = new Stage()
-var sp = new Sprite()
-
-console.log(sp.stage)
-stage.addChild(sp)
-console.log(sp.stage)
+module.exports = Main
