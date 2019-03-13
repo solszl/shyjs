@@ -2,7 +2,7 @@
 import Point from "./geom/Point";
  *
  * Created Date: 2019-03-03, 2:56:22 (zhenliang.sun)
- * Last Modified: 2019-03-13, 21:45:04 (zhenliang.sun)
+ * Last Modified: 2019-03-13, 23:30:54 (zhenliang.sun)
  * Email: zhenliang.sun@gmail.com
  *
  * Distributed under the MIT license. See LICENSE file for details.
@@ -23,40 +23,37 @@ import Point from "./geom/Point";
 //   EE.emit('abcd', 'aa', 'b', 'c', 'd', 'e')
 // }, 3000)
 
-import Point from './geom/Point'
+import DisplayObject from './shyjs/display/DisplayObject';
+import DisplayObjectContainer from './shyjs/display/DisplayObjectContainer';
+import Sprite from './shyjs/display/Sprite';
+import Stage from './shyjs/display/Stage';
+import Event from './shyjs/event/Event';
+import Point from './shyjs/geom/Point';
+import UUID from './shyjs/utils/UUID';
+
+
 var p = new Point()
 var p2 = p.add(new Point(10, 10))
 console.log(p.x, p.y)
 console.log(p2, p2.x)
 console.log(p.toString())
 
-import UUID from './utils/UUID'
 let i = 0
 while (i < 10) {
   console.log(UUID.create())
   i += 1
 }
 
-// const DisplayObject = require('./display/DisplayObject')
-import DisplayObject from './display/DisplayObject'
 var d = new DisplayObject()
 console.log(d)
 
-// const Event = require('./event/Event')
-import Event from './event/Event'
 console.log(Event.Added)
 console.log(Event.AddedToStage)
 console.log(Event.EnterFrame)
 
-// const DisplayObjectContainer = require('./display/DisplayObjectContainer')
-import DisplayObjectContainer from './display/DisplayObjectContainer'
 var con = new DisplayObjectContainer()
 console.log(con)
 
-import Stage from './display/Stage'
-import Sprite from './display/Sprite'
-// import DisplayObject from './display/DisplayObject';
-// import DisplayObjectContainer from './display/DisplayObjectContainer';
 var stage = new Stage()
 var sp = new Sprite()
 

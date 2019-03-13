@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "npm run build-local",
+    "build-local": "cross-env NODE_ENV=development LOG_LEVEL=all webpack-dev-server --config config/webpack.local.config.js",
     "lint-fix": "eslint --fix --ext .js src/"
   },
   "repository": {
