@@ -23,9 +23,20 @@ import Point from "./geom/Point";
 //   EE.emit('abcd', 'aa', 'b', 'c', 'd', 'e')
 // }, 3000)
 
-const Point = require('./geom/Point')
-var p = new Point()
-var p2 = p.add(new Point(10, 10))
-console.log(p.x, p.y)
-console.log(p2, p2.x)
-console.log(p.toString())
+// const Point = require('./geom/Point')
+// var p = new Point()
+// var p2 = p.add(new Point(10, 10))
+// console.log(p.x, p.y)
+// console.log(p2, p2.x)
+// console.log(p.toString())
+
+// const UUID = require('./utils/UUID')
+// let i = 0
+// while(i < 10) {
+//   console.log(UUID.create())
+//   i += 1
+// }
+
+const DisplayObject = require('./display/DisplayObject')
+var d = new DisplayObject()
+console.log(d)
