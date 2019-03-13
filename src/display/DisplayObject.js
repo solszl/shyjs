@@ -30,6 +30,21 @@ class DisplayObject {
     this._nestLevel = 0
     this._uuid = UUID.create()
   }
+
+  addEventListener() {}
+  dispatchEvent() {}
+  hasEventListener(type) {}
+  removeEventListener(type, listener) {}
+  removeEventListeners() {}
+
+  getBounds() {}
+  toString() {}
+
+  localToGlobal(p) {}
+  globalToLocal(p) {}
+
+  hitTest(x, y) {}
+  hitTestObject(obj) {}
 }
 
 module.exports = DisplayObject

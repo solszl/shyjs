@@ -37,6 +37,15 @@ import Point from "./geom/Point";
 //   i += 1
 // }
 
-const DisplayObject = require('./display/DisplayObject')
-var d = new DisplayObject()
-console.log(d)
+// const DisplayObject = require('./display/DisplayObject')
+// var d = new DisplayObject()
+// console.log(d)
+
+// const Event = require('./event/Event')
+// console.log(Event.Added)
+// console.log(Event.AddedToStage)
+// console.log(Event.EnterFrame)
+
+const DisplayObjectContainer = require('./display/DiaplayObjectContainer')
+var con = new DisplayObjectContainer()
+console.log(con)
