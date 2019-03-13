@@ -1,5 +1,5 @@
-// import UUID from '../utils/UUID'
-const UUID = require('../utils/UUID')
+import UUID from '../utils/UUID'
+// const UUID = require('../utils/UUID')
 /**
  * DisplayObject 类是可放在显示列表中的所有对象的基类。该显示列表管理 Flash 运行时中显示的所有对象。使用 DisplayObjectContainer 类排列显示列表中的显示对象。DisplayObjectContainer 对象可以有子显示对象，而其他显示对象（如 Shape 和 TextField 对象）是“叶”节点，只有父级和同级，没有子级。
  * DisplayObject 类支持基本功能（如对象的 x 和 y 位置），也支持更高级的对象属性（如它的转换矩阵）。
@@ -10,7 +10,7 @@ const UUID = require('../utils/UUID')
  * @class DisplayObject
  * @author zhenliang.sun
  */
-class DisplayObject {
+export default class DisplayObject {
   constructor() {
     this._name = ''
     this._width = 0
@@ -49,4 +49,4 @@ class DisplayObject {
   destroy() {}
 }
 
-module.exports = DisplayObject
+// module.exports = DisplayObject

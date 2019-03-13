@@ -1,5 +1,5 @@
-// import Stage from './DisplayObjectContainer'
-const DisplayObjectContainer = require('./DisplayObjectContainer')
+import DisplayObjectContainer from './DisplayObjectContainer'
+// const DisplayObjectContainer = require('./DisplayObjectContainer')
 
 /**
  * Stage 类代表主绘图区
@@ -7,7 +7,7 @@ const DisplayObjectContainer = require('./DisplayObjectContainer')
  * @class Stage
  * @extends {DisplayObjectContainer}
  */
-class Stage extends DisplayObjectContainer {
+export default class Stage extends DisplayObjectContainer {
   constructor() {
     super()
     this._color = null
@@ -85,14 +85,14 @@ class Stage extends DisplayObjectContainer {
   }
 }
 
-const StageEvent = {
+export const StageEvent = {
   Activate: 'Shy.Activate',
   Deactivate: 'Shy.Deactivate',
   Resize: 'Shy.Resize',
   MouseLeave: 'Shy.MouseLeave'
 }
 
-module.exports = {
-  Stage,
-  StageEvent
-}
+// module.exports = {
+//   Stage,
+//   StageEvent
+// }

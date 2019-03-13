@@ -1,5 +1,5 @@
-// import DisplayObject from './DisplayObject'
-const DisplayObject = require('./DisplayObject')
+import DisplayObject from './DisplayObject'
+// const DisplayObject = require('./DisplayObject')
 
 /**
  * DisplayObjectContainer 类是可用作显示列表中显示对象容器的所有对象的基类。该显示列表管理 Flash 运行时中显示的所有对象。使用 DisplayObjectContainer 类排列显示列表中的显示对象。每个 DisplayObjectContainer 对象都有自己的子级列表，用于组织对象的 Z 轴顺序。Z 轴顺序是由前至后的顺序，可确定哪个对象绘制在前，哪个对象绘制在后等
@@ -7,7 +7,7 @@ const DisplayObject = require('./DisplayObject')
  * @class DisplayObjectContainer
  * @author zhenliang.sun
  */
-class DisplayObjectContainer extends DisplayObject {
+export default class DisplayObjectContainer extends DisplayObject {
   constructor() {
     super()
     this.children = []
@@ -44,7 +44,7 @@ class DisplayObjectContainer extends DisplayObject {
    */
   getChildAt(index) {
     let list = this.children
-    if(list.length < index) {
+    if (list.length < index) {
       return null
     }
     return list[index]
@@ -91,7 +91,7 @@ class DisplayObjectContainer extends DisplayObject {
    */
   removeChild(child) {
     let idx = this.children.indexOf(child)
-    if(idx === -1) {
+    if (idx === -1) {
       return child
     }
     return this.children.splice(idx, 1)
@@ -105,7 +105,7 @@ class DisplayObjectContainer extends DisplayObject {
    */
   removeChildAt(index) {
     let list = this.children
-    if(index > list.length) {
+    if (index > list.length) {
       return null
     }
     return this.children.splice(index, 1)
@@ -119,7 +119,7 @@ class DisplayObjectContainer extends DisplayObject {
    * @memberof DisplayObjectContainer
    */
   removeChildren(beginIndex, endIndex) {
-    if(endIndex > beginIndex) {
+    if (endIndex > beginIndex) {
       return []
     }
     return this.children.splice(beginIndex, endIndex - beginIndex + 1)
@@ -134,14 +134,14 @@ class DisplayObjectContainer extends DisplayObject {
    */
   setChildIndex(child, index) {
     let list = this.children
-    if(index > list.length) {
+    if (index > list.length) {
       index = list.length
     }
-    if(index < 0) {
+    if (index < 0) {
       index = 0
     }
 
-    if(!list.includes(child)) {
+    if (!list.includes(child)) {
       return list.splice(index, 0, child)
     }
 
@@ -160,7 +160,7 @@ class DisplayObjectContainer extends DisplayObject {
    */
   swapChildren(child1, child2) {
     let list = this.children
-    if(!list.includes(child1) || !list.includes(child2)) {
+    if (!list.includes(child1) || !list.includes(child2)) {
       return false
     }
 
@@ -181,11 +181,11 @@ class DisplayObjectContainer extends DisplayObject {
    */
   swapChildrenAt(index1, index2) {
     let list = this.children
-    if(index1 < 0 || index1 > list.length) {
+    if (index1 < 0 || index1 > list.length) {
       return false
     }
 
-    if(index2 < 0 || index2 > list.length) {
+    if (index2 < 0 || index2 > list.length) {
       return false
     }
 
@@ -206,4 +206,4 @@ class DisplayObjectContainer extends DisplayObject {
   }
 }
 
-module.exports = DisplayObjectContainer
+// module.exports = DisplayObjectContainer

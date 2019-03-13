@@ -1,6 +1,6 @@
-// import DisplayObjectContainer from './DisplayObjectContainer'
-const DisplayObjectContainer = require('./DisplayObjectContainer')
-class Sprite extends DisplayObjectContainer {
+import DisplayObjectContainer from './DisplayObjectContainer'
+// const DisplayObjectContainer = require('./DisplayObjectContainer')
+export default class Sprite extends DisplayObjectContainer {
   constructor() {
     super()
     this._buttonMode = false
@@ -64,4 +64,4 @@ class Sprite extends DisplayObjectContainer {
   }
 }
 
-module.exports = Sprite
+// module.exports = Sprite
