@@ -59,8 +59,4 @@ export default class Sprite extends DisplayObjectContainer {
   get graphics() {
     return this._graphics
   }
-
-  get stage() {
-    return this._stage
-  }
 }

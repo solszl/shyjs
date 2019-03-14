@@ -82,6 +82,10 @@ export default class Stage extends DisplayObjectContainer {
   get color() {
     return this._color
   }
+
+  get stage() {
+    throw new Error('could not provide property \'stage\' by Stage instance')
+  }
 }
 
 export const StageEvent = {

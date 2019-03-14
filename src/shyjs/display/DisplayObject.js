@@ -49,4 +49,12 @@ export default class DisplayObject {
   hitTestObject(obj) {}
 
   destroy() {}
+
+  get parent() {
+    return this._parent
+  }
+
+  get stage() {
+    return this._stage
+  }
 }

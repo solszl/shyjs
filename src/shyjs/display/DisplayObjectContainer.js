@@ -20,6 +20,7 @@ export default class DisplayObjectContainer extends DisplayObject {
    * @returns child
    */
   addChild(child) {
+    child._parent = this
     return this.children.push(child)
   }
 
@@ -31,6 +32,7 @@ export default class DisplayObjectContainer extends DisplayObject {
    * @memberof DisplayObjectContainer
    */
   addChildAt(child, index) {
+    child._parent = this
     this.children.splice(index, 0, child)
     return child
   }
@@ -89,6 +91,7 @@ export default class DisplayObjectContainer extends DisplayObject {
    * @memberof DisplayObjectContainer
    */
   removeChild(child) {
+    child._parent = null
     let idx = this.children.indexOf(child)
     if(idx === -1) {
       return child
@@ -107,7 +110,12 @@ export default class DisplayObjectContainer extends DisplayObject {
     if(index > list.length || index < 0) {
       return null
     }
-    return this.children.splice(index, 1)
+
+    let removedChildren = this.children.splice(index, 1)
+    removedChildren.forEach(child => {
+      child._parent = null
+    })
+    return removedChildren
   }
 
   /**
@@ -121,7 +129,13 @@ export default class DisplayObjectContainer extends DisplayObject {
     if(beginIndex > endIndex) {
       return []
     }
-    return this.children.splice(beginIndex, endIndex - beginIndex + 1)
+
+    let removedChildren = this.children.splice(beginIndex, endIndex - beginIndex + 1)
+    removedChildren.forEach(child => {
+      child._parent = null
+    })
+
+    return removedChildren
   }
 
   /**
@@ -193,6 +207,15 @@ export default class DisplayObjectContainer extends DisplayObject {
     list[index1] = tempChild2
     list[index2] = tempChild1
     return true
+  }
+
+  removeFromParent() {
+    if(this._parent) {
+      this._parent.removeChild(this)
+      return true
+    }
+
+    return false
   }
 
   destroy() {
