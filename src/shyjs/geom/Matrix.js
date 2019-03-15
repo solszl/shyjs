@@ -1,3 +1,6 @@
+import {
+  Point
+} from './Point'
 /**
  * Matrix 类表示一个转换矩阵，它确定如何将点从一个坐标空间映射到另一个坐标空间。您可以对一个显示对象执行不同的图形转换，方法是设置 Matrix 对象的属性，将该 Matrix 对象应用于 Transform 对象的 matrix 属性，然后应用该 Transform 对象作为显示对象的 transform 属性。这些转换函数包括平移（x 和 y 重新定位）、旋转、缩放和倾斜。
 这些转换类型统称为仿射转换。仿射转换在转换时保持线条笔直，因此平行线保持平行。
@@ -51,6 +54,7 @@ class Matrix {
     this.d = sourceMatrix.d
     this.tx = sourceMatrix.tx
     this.ty = sourceMatrix.ty
+    return this
   }
 
   /**
@@ -83,7 +87,13 @@ class Matrix {
    * @memberof Matrix
    */
   identity() {
-
+    this.a = 1
+    this.b = 0
+    this.c = 0
+    this.d = 1
+    this.tx = 0
+    this.ty = 0
+    return this
   }
 
   /**
@@ -113,7 +123,17 @@ class Matrix {
    * @memberof Matrix
    */
   scale(sx, sy) {
+    if(sx !== 1) {
+      this.a *= sx
+      this.c *= sx
+      this.tx *= sx
+    }
 
+    if(sy !== 1) {
+      this.b *= sy
+      this.d *= sy
+      this.ty *= sy
+    }
   }
 
   /**
@@ -134,6 +154,7 @@ class Matrix {
     this.d = da
     this.tx = txa
     this.ty = tya
+    return this
   }
 
   /**
@@ -152,7 +173,9 @@ class Matrix {
    * @memberof Matrix
    */
   transformPoint(p) {
-
+    let x = this.a * p.x + this.c * p.y + this.tx
+    let y = this.b * p.x + this.d * p.y + this.ty
+    return new Point(x, y)
   }
 
   /**
@@ -163,7 +186,8 @@ class Matrix {
    * @memberof Matrix
    */
   translate(dx, dy) {
-
+    this.tx += dx
+    this.ty += dy
   }
 
   set a(val) {
