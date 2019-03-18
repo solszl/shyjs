@@ -1,11 +1,11 @@
-const webpack = require('webpack');
+const webpack = require('webpack')
 // 引入路径
-const path = require('path');
+const path = require('path')
 
-const ver = require('../package.json').version;
+const ver = require('../package.json').version
 
 function resolve(dir) {
-  return path.join(__dirname, '..', dir);
+  return path.join(__dirname, '..', dir)
 }
 
 const webpackConfig = {
@@ -32,9 +32,10 @@ const webpackConfig = {
     new webpack.DefinePlugin({
       'process.env': {
         LOG_LEVEL: JSON.stringify(process.env.LOG_LEVEL),
-        VERSION: JSON.stringify(ver)
+        VERSION: JSON.stringify(ver),
+        DEBUGGER: JSON.stringify(process.env.NODE_ENV !== 'production')
       }
     })
   ]
-};
-module.exports = webpackConfig;
+}
+module.exports = webpackConfig
