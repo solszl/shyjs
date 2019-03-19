@@ -102,7 +102,45 @@ class Matrix {
    * @memberof Matrix
    */
   invert() {
+    let {
+      a,
+      b,
+      c,
+      d,
+      tx,
+      ty
+    } = this
 
+    if(b === 0 && c === 0) {
+      b = 0
+      c = 0
+      if(a === 0 || d === 0) {
+        a = 0
+        d = 0
+        tx = 0
+        ty = 0
+      } else {
+        a = 1 / a
+        d = 1 / d
+        tx = -a / tx
+        ty = -d / ty
+      }
+      return
+    }
+
+    let determinant = a * d - b * c
+    if(determinant === 0) {
+      this.identity()
+      return
+    }
+
+    determinant = 1 / determinant
+    a = d * determinant
+    b = -b * determinant
+    c = -c * determinant
+    d = a * determinant
+    tx = -(a * tx + c * ty)
+    ty = -(b * tx + d * ty)
   }
 
   /**
