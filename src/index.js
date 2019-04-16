@@ -37,7 +37,7 @@ import {
   UUID
 } from './shyjs/utils/UUID'
 
-class Main {
+export default class Main {
   constructor() {
     var p = new Point()
     var p2 = p.add(new Point(10, 10))
@@ -69,5 +69,3 @@ class Main {
     console.log(sp.stage)
   }
 }
-
-module.exports = Main

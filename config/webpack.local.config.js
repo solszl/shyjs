@@ -1,16 +1,14 @@
-const path = require('path');
-const webpack = require('webpack');
-const baseConfig = require('./webpack.base.config');
-const merge = require('webpack-merge');
+const path = require('path')
+const webpack = require('webpack')
+const baseConfig = require('./webpack.base.config')
+const merge = require('webpack-merge')
 
 function resolve(dir) {
-  return path.join(__dirname, '..', dir);
+  return path.join(__dirname, '..', dir)
 }
 
 const webpackConfig = merge(baseConfig, {
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ],
+  plugins: [new webpack.HotModuleReplacementPlugin()],
   devServer: {
     inline: true,
     hot: true,
@@ -20,6 +18,6 @@ const webpackConfig = merge(baseConfig, {
     compress: false,
     contentBase: resolve('./dist')
   }
-});
+})
 
-module.exports = webpackConfig;
+module.exports = webpackConfig

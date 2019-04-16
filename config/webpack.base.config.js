@@ -18,15 +18,18 @@ const webpackConfig = {
     path: resolve('dist'),
     filename: 'index' + ver + '.js',
     library: 'VHShyJS',
+    libraryExport: 'default',
     libraryTarget: 'umd'
   },
   module: {
-    rules: [{
-      test: /\.js[x]?$/,
-      loader: 'babel-loader',
-      include: resolve('src'),
-      exclude: '/node_modules'
-    }]
+    rules: [
+      {
+        test: /\.js[x]?$/,
+        loader: 'babel-loader',
+        include: resolve('src'),
+        exclude: '/node_modules'
+      }
+    ]
   },
   plugins: [
     new webpack.DefinePlugin({

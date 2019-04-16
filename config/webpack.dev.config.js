@@ -27,7 +27,8 @@ const plugins = [
   //   exclude: ['index.html', 'mobile.html']
   // }),
   new ProgressBarWebpackPlugin({
-    format: '  build [:bar] ' + chalk.green.bold(':percent') + ' (:elapsed seconds)'
+    format:
+      '  build [:bar] ' + chalk.green.bold(':percent') + ' (:elapsed seconds)'
   })
 ]
 const webpackConfig = merge(baseConfig, {
