@@ -1,4 +1,4 @@
-import DisplayObject from './DisplayObject'
+import InteractiveObject from './InteractiveObject'
 
 /**
  * DisplayObjectContainer 类是可用作显示列表中显示对象容器的所有对象的基类。该显示列表管理 Flash 运行时中显示的所有对象。使用 DisplayObjectContainer 类排列显示列表中的显示对象。每个 DisplayObjectContainer 对象都有自己的子级列表，用于组织对象的 Z 轴顺序。Z 轴顺序是由前至后的顺序，可确定哪个对象绘制在前，哪个对象绘制在后等
@@ -6,7 +6,7 @@ import DisplayObject from './DisplayObject'
  * @class DisplayObjectContainer
  * @author zhenliang.sun
  */
-export default class DisplayObjectContainer extends DisplayObject {
+export default class DisplayObjectContainer extends InteractiveObject {
   constructor() {
     super()
     this.children = []
@@ -130,7 +130,10 @@ export default class DisplayObjectContainer extends DisplayObject {
       return []
     }
 
-    let removedChildren = this.children.splice(beginIndex, endIndex - beginIndex + 1)
+    let removedChildren = this.children.splice(
+      beginIndex,
+      endIndex - beginIndex + 1
+    )
     removedChildren.forEach(child => {
       child._parent = null
     })
