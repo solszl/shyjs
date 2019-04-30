@@ -6,7 +6,7 @@ Rectangle 类的 x、y、width 和 height 属性相互独立；更改一个属�
  * @class Rectangle
  * @author zhenliang.sun
  */
-class Rectangle {
+export default class Rectangle {
   constructor(x = 0, y = 0, width = 0, height = 0) {
     this._x = x
     this._y = y
@@ -38,10 +38,10 @@ class Rectangle {
    */
   contains(x, y) {
     return (
-      x > this.x &&
-      x < this.x + this.width &&
-      y > this.y &&
-      y < this.y + this.height
+      x >= this.x &&
+      x <= this.x + this.width &&
+      y >= this.y &&
+      y <= this.y + this.height
     )
   }
 
@@ -119,8 +119,8 @@ class Rectangle {
    * @memberof Rectangle
    */
   inflate(dx, dy) {
-    this.x += dx
-    this.y += dy
+    this.width += dx
+    this.height += dy
   }
 
   /**
@@ -284,9 +284,7 @@ class Rectangle {
    * @memberof Rectangle
    * @returns Point
    */
-  get size() {}
-}
-
-module.exports = {
-  Rectangle
+  get size() {
+    return new Point(this.width, this.height)
+  }
 }
