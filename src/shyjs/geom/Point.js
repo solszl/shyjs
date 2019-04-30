@@ -5,7 +5,7 @@
  * @class Point
  * @author zhenliang.sun
  */
-export class Point {
+export default class Point {
   constructor(x = 0, y = 0) {
     this.x = x
     this.y = y
@@ -140,8 +140,4 @@ export class Point {
   get y() {
     return this._y
   }
-}
-
-module.exports = {
-  Point
 }

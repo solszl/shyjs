@@ -1,3 +1,4 @@
+import Point from './Point'
 /**
  * Rectangle 对象是按其位置（由它左上角的点 (x, y) 确定）以及宽度和高度定义的区域。
 Rectangle 类的 x、y、width 和 height 属性相互独立；更改一个属性的值不会影响其他属性。但是，right 和 bottom 属性与这四个属性是整体相关的。例如，如果更改 right 属性的值，则 width 属性的值将发生变化；如果更改 bottom 属性，则 height 属性的值将发生变化。
@@ -36,7 +37,12 @@ class Rectangle {
    * @returns 如果 Rectangle 对象包含指定的点，则值为 true；否则为 false
    */
   contains(x, y) {
-
+    return (
+      x > this.x &&
+      x < this.x + this.width &&
+      y > this.y &&
+      y < this.y + this.height
+    )
   }
 
   /**
@@ -46,7 +52,7 @@ class Rectangle {
    * @memberof Rectangle
    */
   containsPoint(p) {
-
+    return this.contains(p.x, p.y)
   }
 
   /**
@@ -56,7 +62,20 @@ class Rectangle {
    * @memberof Rectangle
    */
   containsRect(rect) {
-
+    const w1 = rect.x + rect.width
+    const h1 = rect.y + rect.height
+    const w2 = this.x + this.width
+    const h2 = this.y + this.height
+    return (
+      rect.x > this.x &&
+      rect.x <= w2 &&
+      rect.y > this.y &&
+      rect.y <= h2 &&
+      w1 > this.x &&
+      w1 <= w2 &&
+      h1 <= h2 &&
+      h1 > this.y
+    )
   }
 
   /**
@@ -66,7 +85,11 @@ class Rectangle {
    * @memberof Rectangle
    */
   copyFrom(sourceRect) {
-
+    this.x = sourceRect.x
+    this.y = sourceRect.y
+    this.width = sourceRect.width
+    this.height = sourceRect.height
+    return this
   }
 
   /**
@@ -76,7 +99,16 @@ class Rectangle {
    * @memberof Rectangle
    */
   equals(toCompare) {
-    return this.x === toCompare.x && this.y === toCompare.y && this.height === toCompare.height && this.width === toCompare.width
+    if(this === toCompare) {
+      return true
+    }
+
+    return (
+      this.x === toCompare.x &&
+      this.y === toCompare.y &&
+      this.height === toCompare.height &&
+      this.width === toCompare.width
+    )
   }
 
   /**
@@ -87,7 +119,8 @@ class Rectangle {
    * @memberof Rectangle
    */
   inflate(dx, dy) {
-
+    this.x += dx
+    this.y += dy
   }
 
   /**
@@ -97,7 +130,7 @@ class Rectangle {
    * @memberof Rectangle
    */
   inflatePoint(p) {
-
+    this.inflate(p.x, p.y)
   }
 
   /**
@@ -107,7 +140,32 @@ class Rectangle {
    * @memberof Rectangle
    */
   intersects(toIntersect) {
+    const atl = new Point(this.x, this.y)
+    const abr = new Point(this.x + this.width, this.y + this.height)
+    const btl = new Point(toIntersect.x, toIntersect.y)
+    const bbr = new Point(
+      toIntersect.x + toIntersect.width,
+      toIntersect.y + toIntersect.height
+    )
 
+    return (
+      Math.max(atl.x, btl.x) <= Math.min(abr.x, bbr.x) &&
+      Math.max(atl.y, btl.y) <= Math.min(abr.y, bbr.y)
+    )
+  }
+
+  /**
+   * 如果在 toIntersect 参数中指定的 Rectangle 对象与此 Rectangle 对象相交，则返回交集区域作为 Rectangle 对象。如果矩形不相交，则此方法返回一个空的 Rectangle 对象，其属性设置为 0
+   *
+   * @param {*} toIntersect
+   * @memberof Rectangle
+   */
+  intersection(toIntersect) {
+    if(!this.containsRect(toIntersect)) {
+      this.setTo(0, 0, 0, 0)
+    }
+
+    this.union(toIntersect)
   }
 
   /**
@@ -120,7 +178,10 @@ class Rectangle {
    * @memberof Rectangle
    */
   setTo(xa, ya, widtha, heighta) {
-
+    this.x = xa
+    this.y = ya
+    this.width = widtha
+    this.height = heighta
   }
 
   /**
@@ -129,7 +190,7 @@ class Rectangle {
    * @memberof Rectangle
    */
   toString() {
-
+    return `(x=${this.x},y=${this.y},height=${this.height},width=${this.width})`
   }
 
   /**
@@ -139,7 +200,17 @@ class Rectangle {
    * @memberof Rectangle
    */
   union(toUnion) {
+    const atl = new Point(this.x, this.y)
+    const btl = new Point(toUnion.x, toUnion.y)
 
+    this.setTo(
+      Math.min(atl.x, btl.x),
+      Math.min(atl.y, btl.y),
+      btl.x - atl.x + toUnion.width,
+      btl.y - atl.y + toUnion.height
+    )
+
+    return this
   }
 
   set x(val) {
@@ -213,9 +284,7 @@ class Rectangle {
    * @memberof Rectangle
    * @returns Point
    */
-  get size() {
-
-  }
+  get size() {}
 }
 
 module.exports = {
