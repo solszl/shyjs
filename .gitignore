@@ -1,2 +1,4 @@
 node_modules
 __test__/coverage
+
+.DS_Store
