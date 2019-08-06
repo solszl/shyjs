@@ -1,6 +1,4 @@
-import {
-  Point
-} from './Point'
+import { Point } from './Point'
 /**
  * Matrix 类表示一个转换矩阵，它确定如何将点从一个坐标空间映射到另一个坐标空间。您可以对一个显示对象执行不同的图形转换，方法是设置 Matrix 对象的属性，将该 Matrix 对象应用于 Transform 对象的 matrix 属性，然后应用该 Transform 对象作为显示对象的 transform 属性。这些转换函数包括平移（x 和 y 重新定位）、旋转、缩放和倾斜。
 这些转换类型统称为仿射转换。仿射转换在转换时保持线条笔直，因此平行线保持平行。
@@ -67,9 +65,7 @@ class Matrix {
    * @param {number} [ty=0]
    * @memberof Matrix
    */
-  createBox(scaleX, scaleY, rotation = 0, tx = 0, ty = 0) {
-
-  }
+  createBox(scaleX, scaleY, rotation = 0, tx = 0, ty = 0) {}
 
   /**
    * 如果给定预转换坐标空间中的点，则此方法返回发生转换后该点的坐标。
@@ -77,9 +73,7 @@ class Matrix {
    * @param {*} p
    * @memberof Matrix
    */
-  deltaTransformPoint(p) {
-
-  }
+  deltaTransformPoint(p) {}
 
   /**
    * 为每个矩阵属性设置一个值，该值将导致 null 转换。
@@ -102,14 +96,7 @@ class Matrix {
    * @memberof Matrix
    */
   invert() {
-    let {
-      a,
-      b,
-      c,
-      d,
-      tx,
-      ty
-    } = this
+    let { a, b, c, d, tx, ty } = this
 
     if(b === 0 && c === 0) {
       b = 0
@@ -149,9 +136,7 @@ class Matrix {
    * @param {*} r
    * @memberof Matrix
    */
-  rotate(r) {
-
-  }
+  rotate(r) {}
 
   /**
    * 对矩阵应用缩放转换。
