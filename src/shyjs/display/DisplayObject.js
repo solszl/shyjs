@@ -1,4 +1,5 @@
 import { UUID } from '../utils/UUID'
+import EventDispatcher from '../event/EventDispatcher'
 
 /**
  * DisplayObject 类是可放在显示列表中的所有对象的基类。该显示列表管理 Flash 运行时中显示的所有对象。使用 DisplayObjectContainer 类排列显示列表中的显示对象。DisplayObjectContainer 对象可以有子显示对象，而其他显示对象（如 Shape 和 TextField 对象）是“叶”节点，只有父级和同级，没有子级。
@@ -10,8 +11,9 @@ import { UUID } from '../utils/UUID'
  * @class DisplayObject
  * @author zhenliang.sun
  */
-export default class DisplayObject {
+export default class DisplayObject extends EventDispatcher {
   constructor() {
+    super()
     this._name = ''
     this._width = 0
     this._height = 0
@@ -29,13 +31,12 @@ export default class DisplayObject {
     this._y = 0
     this._nestLevel = 0
     this._uuid = UUID.create()
-  }
 
-  addEventListener() {}
-  dispatchEvent() {}
-  hasEventListener(type) {}
-  removeEventListener(type, listener) {}
-  removeEventListeners() {}
+    /** 本地矩阵 */
+    this._localMatrix = null
+    /** 世界矩阵 */
+    this._globalMatrix = null
+  }
 
   getBounds() {}
   toString() {}
@@ -46,7 +47,9 @@ export default class DisplayObject {
   hitTest(x, y) {}
   hitTestObject(obj) {}
 
-  destroy() {}
+  destroy() {
+    super.destroy()
+  }
 
   get parent() {
     return this._parent
