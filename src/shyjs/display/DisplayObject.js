@@ -1,4 +1,5 @@
 import EventDispatcher from '../event/EventDispatcher'
+import Event from '../event/Event'
 
 /**
  * DisplayObject 类是可放在显示列表中的所有对象的基类。该显示列表管理 Flash 运行时中显示的所有对象。使用 DisplayObjectContainer 类排列显示列表中的显示对象。DisplayObjectContainer 对象可以有子显示对象，而其他显示对象（如 Shape 和 TextField 对象）是“叶”节点，只有父级和同级，没有子级。
@@ -11,6 +12,8 @@ import EventDispatcher from '../event/EventDispatcher'
  * @author zhenliang.sun
  */
 export default class DisplayObject extends EventDispatcher {
+  static enterFrameCallBKList = []
+  static renderCallBKList = []
   constructor() {
     super()
     this._name = ''
@@ -44,6 +47,16 @@ export default class DisplayObject extends EventDispatcher {
 
   hitTest(x, y) {}
   hitTestObject(obj) {}
+
+  addEventListener(type, handler) {
+    super.addEventListener(type, handler)
+    if(type === Event.ENTER_FRAME || type === Event.RENDER) {
+      let list = type === Event.ENTER_FRAME ? DisplayObject.enterFrameCallBKList : DisplayObject.renderCallBKList
+      if(!list.includes(this)) {
+        list.push(this)
+      }
+    }
+  }
 
   destroy() {
     super.destroy()

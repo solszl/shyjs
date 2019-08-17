@@ -1,7 +1,7 @@
 /**
  *
  * Created Date: 2019-08-18, 01:23:16 (zhenliang.sun)
- * Last Modified: 2019-08-18, 01:27:00 (zhenliang.sun)
+ * Last Modified: 2019-08-18, 02:52:24 (zhenliang.sun)
  * Email: zhenliang.sun@gmail.com
  *
  * Distributed under the MIT license. See LICENSE file for details.
@@ -15,14 +15,14 @@
  * @class Log
  * @author zhenliang.sun
  */
-export default class Logger {
+export default class Log {
   static instance = null
   constructor() {
-    if(Logger.instance) {
+    if(Log.instance) {
       throw new Error('Log should be a singleton Class')
     }
 
-    Logger.instance = this
+    Log.instance = this
     this.logLevels = {
       all: 'debug|info|log|warn|error',
       off: '',
@@ -36,11 +36,11 @@ export default class Logger {
   }
 
   static get OBJ() {
-    if(!Logger.instance) {
-      Logger.instance = new Logger()
+    if(!Log.instance) {
+      Log.instance = new Log()
     }
 
-    return Logger.instance
+    return Log.instance
   }
 
   /**

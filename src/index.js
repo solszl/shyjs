@@ -1,7 +1,7 @@
 /**
  *
  * Created Date: 2019-03-03, 2:56:22 (zhenliang.sun)
- * Last Modified: 2019-08-18, 01:31:15 (zhenliang.sun)
+ * Last Modified: 2019-08-18, 02:47:49 (zhenliang.sun)
  * Email: zhenliang.sun@gmail.com
  *
  * Distributed under the MIT license. See LICENSE file for details.
@@ -9,7 +9,7 @@
  */
 
 import Stage from './shyjs/display/Stage'
-import { Event } from './shyjs/event/Event'
+import Event from './shyjs/event/Event'
 import Timer from './shyjs/utils/Timer'
 import TimerEvent from './shyjs/event/TimerEvent'
 import Kernel from './shyjs/player/Kernel'

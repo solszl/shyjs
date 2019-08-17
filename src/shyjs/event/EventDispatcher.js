@@ -1,7 +1,7 @@
 /**
  *
  * Created Date: 2019-08-07, 01:05:34 (zhenliang.sun)
- * Last Modified: 2019-08-18, 00:27:12 (zhenliang.sun)
+ * Last Modified: 2019-08-18, 03:18:12 (zhenliang.sun)
  * Email: zhenliang.sun@gmail.com
  *
  * Distributed under the MIT license. See LICENSE file for details.
@@ -35,7 +35,7 @@ export default class EventDispatcher {
   once(type, listener) {
     let list = this.dispatcher.onceListeners[type] || []
     list.push(listener)
-    this.dispatcher.onceListeners = list
+    this.dispatcher.onceListeners[type] = list
   }
 
   off(type, listener) {

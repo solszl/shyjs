@@ -1,9 +1,10 @@
 import EventDispatcher from '../event/EventDispatcher'
+import TimerEvent from '../event/TimerEvent'
 
 /**
  *
  * Created Date: 2019-08-18, 00:29:11 (zhenliang.sun)
- * Last Modified: 2019-08-18, 01:39:22 (zhenliang.sun)
+ * Last Modified: 2019-08-18, 01:57:52 (zhenliang.sun)
  * Email: zhenliang.sun@gmail.com
  *
  * Distributed under the MIT license. See LICENSE file for details.
@@ -61,5 +62,25 @@ export default class Timer extends EventDispatcher {
 
   get running() {
     return this._running
+  }
+
+  _update(t) {
+    this._currentCount += 1
+
+    // 派发普通time update 事件
+    if(this.repeatCount === 0 || this._currentCount <= this.repeatCount) {
+      const evt = new TimerEvent(TimerEvent.TIMER)
+      evt.target = this
+      this.dispatchEvent(evt)
+    }
+
+    // 派发time complete 事件
+    const complete = this.repeatCount > 0 && this._currentCount >= this.repeatCount
+    if(complete) {
+      this.stop()
+      const evt = new TimerEvent(TimerEvent.TIMER_COMPLETE)
+      evt.target = this
+      this.dispatchEvent(evt)
+    }
   }
 }

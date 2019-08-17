@@ -4,10 +4,18 @@
  * @class Event
  * @author zhenliang.sun
  */
-export class Event {
+export default class Event {
+  static ADDED = 'Shy.added'
+  static ADDED_TO_STAGE = 'Shy.addedToStage'
+  static ENTER_FRAME = 'Shy.enterFrame'
+  static WILL_REMOVE = 'Shy.willRemove'
+  static REMOVED_FROM_STAGE = 'Shy.removedFromStage'
+  static RENDER = 'Shy.render'
+
   constructor(type, data = null) {
     this.type = type
     this.data = data
+    this.target = null
   }
 
   /**
@@ -28,21 +36,4 @@ export class Event {
   toString() {
     return `[Event type=${this.type} data=${this.data ? JSON.stringify(this.data) : ''}]`
   }
-}
-
-const Added = 'Shy.Added'
-const AddedToStage = 'Shy.AddedToStage'
-const EnterFrame = 'Shy.EnterFrame'
-const WillRemove = 'Shy.WillRemove'
-const RemoveFromStage = 'Shy.RemoveFromStage'
-const Render = 'Shy.Render'
-
-module.exports = {
-  Event,
-  Added,
-  AddedToStage,
-  EnterFrame,
-  WillRemove,
-  RemoveFromStage,
-  Render
 }
