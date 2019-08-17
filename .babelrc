@@ -9,13 +9,21 @@
 
 {
   "presets": [
-    ["@babel/preset-env", {
-      "targets": {
-        "browsers": ["> 5%", "last 5 versions", "not ie <= 8", "safari >= 7"]
-      },
-      "modules": "commonjs",
-    }],
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "browsers": ["> 5%", "last 5 versions", "not ie <= 8", "safari >= 7"]
+        },
+        "modules": "commonjs"
+      }
+    ],
     "jest"
   ],
-  "plugins": ["@babel/plugin-transform-runtime", "syntax-dynamic-import", "transform-es2015-typeof-symbol"],
+  "plugins": [
+    "@babel/plugin-transform-runtime",
+    "syntax-dynamic-import",
+    "transform-es2015-typeof-symbol",
+    "@babel/plugin-proposal-class-properties"
+  ]
 }
