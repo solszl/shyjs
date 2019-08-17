@@ -1,12 +1,19 @@
 const webpack = require('webpack')
 // 引入路径
 const path = require('path')
-
-const ver = require('../package.json').version
+const chalk = require('chalk')
+const ver = require('./../package.json').version
+const ProgressBarWebpackPlugin = require('progress-bar-webpack-plugin')
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
+
+const plugins = [
+  new ProgressBarWebpackPlugin({
+    format: '  build [:bar] ' + chalk.green.bold(':percent') + ' (:elapsed seconds)'
+  })
+]
 
 const webpackConfig = {
   mode: process.env.NODE_ENV,
@@ -17,7 +24,7 @@ const webpackConfig = {
   output: {
     path: resolve('dist'),
     filename: 'index' + ver + '.js',
-    library: 'VHShyJS',
+    library: 'ShyJS',
     libraryExport: 'default',
     libraryTarget: 'umd'
   },
@@ -39,6 +46,6 @@ const webpackConfig = {
         DEBUGGER: JSON.stringify(process.env.NODE_ENV !== 'production')
       }
     })
-  ]
+  ].concat(plugins)
 }
 module.exports = webpackConfig

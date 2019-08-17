@@ -13,7 +13,7 @@ const webpackConfig = merge(baseConfig, {
     inline: true,
     hot: true,
     open: false,
-    host: '0.0.0.0',
+    host: 'localhost',
     port: 9099,
     compress: false,
     contentBase: resolve('./dist')

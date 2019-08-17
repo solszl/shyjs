@@ -1,7 +1,7 @@
 /**
  *
  * Created Date: 2019-03-13, 23:35:40 (zhenliang.sun)
- * Last Modified: 2019-03-13, 23:36:58 (zhenliang.sun)
+ * Last Modified: 2019-08-17, 23:22:09 (zhenliang.sun)
  * Email: zhenliang.sun@gmail.com
  *
  * Distributed under the MIT license. See LICENSE file for details.
@@ -20,14 +20,8 @@ function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 const plugins = [
-  // new CleanWebpackPlugin(['dist'], {
-  //   root: resolve('/'),
-  //   verbose: true,
-  //   exclude: ['index.html', 'mobile.html']
-  // }),
   new ProgressBarWebpackPlugin({
-    format:
-      '  build [:bar] ' + chalk.green.bold(':percent') + ' (:elapsed seconds)'
+    format: '  build [:bar] ' + chalk.green.bold(':percent') + ' (:elapsed seconds)'
   })
 ]
 const webpackConfig = merge(baseConfig, {

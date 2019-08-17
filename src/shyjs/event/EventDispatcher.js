@@ -1,12 +1,14 @@
 /**
  *
  * Created Date: 2019-08-07, 01:05:34 (zhenliang.sun)
- * Last Modified: 2019-08-14, 00:39:31 (zhenliang.sun)
+ * Last Modified: 2019-08-18, 00:27:12 (zhenliang.sun)
  * Email: zhenliang.sun@gmail.com
  *
  * Distributed under the MIT license. See LICENSE file for details.
  * Copyright (c) 2019 vhall
  */
+
+import uid from 'uid-safe'
 
 /**
  *
@@ -17,6 +19,7 @@
  */
 export default class EventDispatcher {
   constructor() {
+    this.uid = uid.sync(6)
     this._dispatcher = {
       normalListeners: {},
       onceListeners: {}
@@ -25,13 +28,14 @@ export default class EventDispatcher {
 
   on(type, listener) {
     let list = this.dispatcher.normalListeners[type] || []
-
     list.push(listener)
+    this.dispatcher.normalListeners[type] = list
   }
 
   once(type, listener) {
     let list = this.dispatcher.onceListeners[type] || []
     list.push(listener)
+    this.dispatcher.onceListeners = list
   }
 
   off(type, listener) {
@@ -67,7 +71,23 @@ export default class EventDispatcher {
     this.on(type, listener)
   }
 
-  dispatchEvent(event) {}
+  dispatchEvent(event) {
+    const type = event['type']
+    let normalList = this.dispatcher.normalListeners[type] || []
+    normalList.forEach(fn => {
+      fn(event)
+    })
+
+    let onceList = this.dispatcher.onceListeners[type] || []
+    if(onceList.length > 0) {
+      onceList.forEach(fn => {
+        fn(event)
+      })
+
+      delete this.dispatcher.onceListeners[type]
+    }
+  }
+
   hasEventListener(type) {
     return this.dispatcher.normalListeners[type] || this.dispatcher.onceListeners[type]
   }

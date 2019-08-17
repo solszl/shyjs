@@ -1,4 +1,3 @@
-import { UUID } from '../utils/UUID'
 import EventDispatcher from '../event/EventDispatcher'
 
 /**
@@ -30,7 +29,6 @@ export default class DisplayObject extends EventDispatcher {
     this._x = 0
     this._y = 0
     this._nestLevel = 0
-    this._uuid = UUID.create()
 
     /** 本地矩阵 */
     this._localMatrix = null
