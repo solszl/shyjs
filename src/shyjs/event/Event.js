@@ -11,6 +11,7 @@ export default class Event {
   static WILL_REMOVE = 'Shy.willRemove'
   static REMOVED_FROM_STAGE = 'Shy.removedFromStage'
   static RENDER = 'Shy.render'
+  static RESIZE = 'Shy.resize'
 
   constructor(type, data = null) {
     this.type = type

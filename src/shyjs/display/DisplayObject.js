@@ -14,6 +14,7 @@ import Event from '../event/Event'
 export default class DisplayObject extends EventDispatcher {
   static enterFrameCallBKList = []
   static renderCallBKList = []
+  static stage = null
   constructor() {
     super()
     this._name = ''

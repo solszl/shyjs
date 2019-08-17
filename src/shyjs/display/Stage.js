@@ -1,4 +1,6 @@
 import DisplayObjectContainer from './DisplayObjectContainer'
+import Event from '../event/Event'
+import DisplayObject from './DisplayObject'
 
 /**
  * Stage 类代表主绘图区
@@ -9,8 +11,12 @@ import DisplayObjectContainer from './DisplayObjectContainer'
 export default class Stage extends DisplayObjectContainer {
   constructor() {
     super()
+    if(DisplayObject.stage) {
+      throw new Error('只能有一个stage')
+    }
     this._color = null
-    this._frameRate = 30
+    DisplayObject.stage = this
+    this.addEventListener(StageEvent.Resize, this._onStageResizeHandler.bind(this))
   }
 
   addChild(child) {
@@ -62,19 +68,6 @@ export default class Stage extends DisplayObjectContainer {
     return 0
   }
 
-  set frameRate(val) {
-    this._frameRate = val
-  }
-
-  /**
-   * 获取并设置舞台的帧速率。帧速率是指每秒显示的帧数。默认情况下，速率设置为浏览器的帧速率
-   *
-   * @memberof Stage
-   */
-  get frameRate() {
-    return this._frameRate
-  }
-
   set color(val) {
     this._color = val
   }
@@ -86,11 +79,15 @@ export default class Stage extends DisplayObjectContainer {
   get stage() {
     throw new Error('could not provide property \'stage\' by Stage instance')
   }
+
+  _onStageResizeHandler(e) {
+    console.error(e)
+  }
 }
 
 export const StageEvent = {
   Activate: 'Shy.Activate',
   Deactivate: 'Shy.Deactivate',
-  Resize: 'Shy.Resize',
+  Resize: 'Shy.stageResize',
   MouseLeave: 'Shy.MouseLeave'
 }
