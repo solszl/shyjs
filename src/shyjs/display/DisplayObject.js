@@ -17,7 +17,6 @@ export default class DisplayObject extends EventDispatcher {
   static stage = null
   constructor() {
     super()
-    this._name = ''
     this._width = 0
     this._height = 0
     this._stage = null
@@ -57,10 +56,6 @@ export default class DisplayObject extends EventDispatcher {
         list.push(this)
       }
     }
-  }
-
-  destroy() {
-    super.destroy()
   }
 
   get parent() {

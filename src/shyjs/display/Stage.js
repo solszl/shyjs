@@ -1,6 +1,5 @@
-import DisplayObjectContainer from './DisplayObjectContainer'
-import Event from '../event/Event'
 import DisplayObject from './DisplayObject'
+import DisplayObjectContainer from './DisplayObjectContainer'
 
 /**
  * Stage 类代表主绘图区
@@ -14,6 +13,7 @@ export default class Stage extends DisplayObjectContainer {
     if(DisplayObject.stage) {
       throw new Error('只能有一个stage')
     }
+
     this._color = null
     DisplayObject.stage = this
     this.addEventListener(StageEvent.Resize, this._onStageResizeHandler.bind(this))

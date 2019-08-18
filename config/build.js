@@ -1,7 +1,7 @@
 /**
  *
  * Created Date: 2019-03-13, 23:35:36 (zhenliang.sun)
- * Last Modified: 2019-03-13, 23:35:37 (zhenliang.sun)
+ * Last Modified: 2019-08-18, 21:05:59 (zhenliang.sun)
  * Email: zhenliang.sun@gmail.com
  *
  * Distributed under the MIT license. See LICENSE file for details.
@@ -13,8 +13,12 @@ const ora = require('ora')
 const chalk = require('chalk')
 const webpack = require('webpack')
 // 根据传入的环境变量对不用配置进行打包
-const webpackConfig =
+let webpackConfig =
   process.env.NODE_ENV === 'production' ? require('./webpack.prod.config') : require('./webpack.dev.config')
+
+if(process.env.ANALYZER) {
+  webpackConfig = require('./webpack.analyzer.config')
+}
 
 const spinner = ora(`building for ${process.env.NODE_ENV} ${process.env.LOG_LEVEL} ...\n`)
 spinner.start()

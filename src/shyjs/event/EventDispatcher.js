@@ -1,14 +1,14 @@
 /**
  *
  * Created Date: 2019-08-07, 01:05:34 (zhenliang.sun)
- * Last Modified: 2019-08-18, 03:18:12 (zhenliang.sun)
+ * Last Modified: 2019-08-18, 21:07:46 (zhenliang.sun)
  * Email: zhenliang.sun@gmail.com
  *
  * Distributed under the MIT license. See LICENSE file for details.
  * Copyright (c) 2019 vhall
  */
 
-import uid from 'uid-safe'
+// import uid from 'uid-safe'
 
 /**
  *
@@ -19,7 +19,7 @@ import uid from 'uid-safe'
  */
 export default class EventDispatcher {
   constructor() {
-    this.uid = uid.sync(6)
+    // this.uid = uid.sync(6)
     this._dispatcher = {
       normalListeners: {},
       onceListeners: {}

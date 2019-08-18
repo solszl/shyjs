@@ -11,12 +11,12 @@ class DD {
 }
 
 const DragEvent = {
-  DragEnter: 'Shy.DragEnter',
-  DragComplete: 'Shy.DragComplete',
-  DragStart: 'Shy.DragStart',
-  DragDrop: 'Shy.DragDrop',
-  DragExit: 'Shy.DragExit',
-  DragOver: 'Shy.DragOver'
+  DRAG_ENTER: 'Shy.dragEnter',
+  DRAG_COMPLETE: 'Shy.dragComplete',
+  DRAG_START: 'Shy.dragStart',
+  DRAG_DROP: 'Shy.dragDrop',
+  DRAG_EXIT: 'Shy.dragExit',
+  DRAG_OVER: 'Shy.dragOver'
 }
 module.exports = {
   DD,

@@ -19,11 +19,11 @@ const webpackConfig = {
   mode: process.env.NODE_ENV,
   devtool: process.env.NODE_ENV === 'production' ? '' : 'source-map',
   entry: {
-    index: resolve('src/index.js')
+    shyjs: resolve('src/index.js')
   },
   output: {
     path: resolve('dist'),
-    filename: 'index' + ver + '.js',
+    filename: `[name]${ver}.js`,
     library: 'ShyJS',
     libraryExport: 'default',
     libraryTarget: 'umd'
@@ -34,7 +34,7 @@ const webpackConfig = {
         test: /\.js[x]?$/,
         loader: 'babel-loader',
         include: resolve('src'),
-        exclude: '/node_modules'
+        exclude: '/node_modules/'
       }
     ]
   },
