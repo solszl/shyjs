@@ -1,7 +1,7 @@
 /**
  *
  * Created Date: 2019-03-13, 21:50:35 (zhenliang.sun)
- * Last Modified: 2019-03-14, 02:17:56 (zhenliang.sun)
+ * Last Modified: 2019-08-21, 22:56:07 (zhenliang.sun)
  * Email: zhenliang.sun@gmail.com
  *
  * Distributed under the MIT license. See LICENSE file for details.
@@ -16,7 +16,9 @@
  * @author zhenliang.sun
  */
 export default class Graphics {
-  constructor() {}
+  constructor(target = null) {
+    this.target = target
+  }
 }
 
 export const LineCap = {

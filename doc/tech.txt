@@ -1,0 +1,14 @@
+/*
+ * Filename: /Volumes/Macintosh2/Repo/github/js/canvas/shyjs/doc/tech.txt
+ * Path: /Volumes/Macintosh2/Repo/github/js/canvas/shyjs
+ * Created Date: Monday, August 19th 2019, 12:54:43 am
+ * Author: zhenliang.sun
+ *
+ * Copyright (c) 2019 vhall
+ */
+
+quadtree
+LRU cache
+drag
+animate
+geo

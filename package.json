@@ -47,7 +47,6 @@
     "ora": "^3.2.0",
     "progress-bar-webpack-plugin": "^1.12.1",
     "uglifyjs-webpack-plugin": "^2.1.2",
-    "uid-safe": "^2.1.5",
     "webpack": "^4.29.6",
     "webpack-bundle-analyzer": "^3.4.1",
     "webpack-cli": "^3.2.3",

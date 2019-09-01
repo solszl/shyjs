@@ -6,6 +6,7 @@ import DisplayObjectContainer from './DisplayObjectContainer'
  *
  * @class Stage
  * @extends {DisplayObjectContainer}
+ * @author zhenliang.sun
  */
 export default class Stage extends DisplayObjectContainer {
   constructor() {

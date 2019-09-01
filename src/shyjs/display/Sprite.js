@@ -4,7 +4,7 @@ export default class Sprite extends DisplayObjectContainer {
   constructor() {
     super()
     this._buttonMode = false
-    this._graphics = new Graphics()
+    this._graphics = new Graphics(this)
   }
 
   /**
@@ -14,18 +14,14 @@ export default class Sprite extends DisplayObjectContainer {
    * @param {*} bounds
    * @memberof Sprite
    */
-  startDrag(lockCenter, bounds) {
-
-  }
+  startDrag(lockCenter, bounds) {}
 
   /**
    * 结束 startDrag() 方法。通过 startDrag() 方法变为可拖动的 Sprite 将一直保持可拖动状态，直到添加 stopDrag() 方法或另一个 Sprite 变为可拖动状态为止。在同一时间只有一个 Sprite 是可拖动的。
    *
    * @memberof Sprite
    */
-  stopDrag() {
-
-  }
+  stopDrag() {}
 
   set buttonMode(val) {
     this._buttonMode = val
@@ -46,9 +42,7 @@ export default class Sprite extends DisplayObjectContainer {
    * @readonly
    * @memberof Sprite
    */
-  get dropTarget() {
-
-  }
+  get dropTarget() {}
 
   /**
    * [只读] 指定属于此 sprite 的 Graphics 对象，在此 sprite 中可执行矢量绘图命令

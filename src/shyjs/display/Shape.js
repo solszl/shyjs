@@ -12,7 +12,7 @@ import Graphics from './Graphics'
 export default class Shape extends DisplayObject {
   constructor() {
     super()
-    this._graphics = new Graphics()
+    this._graphics = new Graphics(this)
   }
 
   /**
